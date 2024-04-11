@@ -1,37 +1,53 @@
 from turtle import Turtle, Screen
+import random
+import turtle
 
 screen = Screen()
 
 screen.setup(400, 300)
 aposta_usuario = screen.textinput("Faça sua aposta", "Qual tartaruga vai ganhar? ")
-leonardo = Turtle()
-leonardo.shape("turtle")
-leonardo.color("red")
+nomes = ["Leonardo", "João", "Pedro", "Afonso", "Lidia", "Pamela"]
+cores = ["red", "blue", "green", "orange", "pink", "yellow"]
+tartarugas = dict()
+vencedora = ""
 
-joao = Turtle()
-joao.shape("turtle")
-joao.color("blue")
+#Definição da posição de largada
+posicao_largada = (-170, 150)
+espacamento = 40
 
-pedro = Turtle()
-pedro.shape("turtle")
-pedro.color("green")
+#Loop para criar cada tartaruga
+for nome, cor in zip(nomes, cores):
+    tartarugas[nome] = turtle.Turtle()
+    tartarugas[nome].shape("turtle")
+    tartarugas[nome].color(cor)
 
-afonso = Turtle()
-afonso.shape("turtle")
-afonso.color("orange")
-afonso.goto(-170, -100)
+#Movimento para a posição de largada
+    pos_x = posicao_largada[0]
+    pos_y = posicao_largada[1] - (espacamento * len(tartarugas)) 
+    tartarugas[nome].setpos(pos_x, pos_y)
 
-lidia = Turtle()
-lidia.shape("turtle")
-lidia.color("pink")
+random.randint(1, 6)
 
-pamela = Turtle()
-pamela.shape("turtle")
-pamela.color("yellow")
+while not vencedora:
+    # Nomes é uma lista com todos os nomes das tartarugas
+    for nome in nomes:
+        # Obtendo a distância
+        distancia = random.randint(1, 6)
+        # Fazendo a tartaruga andar a distância
+        tartarugas[nome].forward(distancia)
 
-joao.backward(100)
+        if tartarugas[nome].pos()[0] > 160:
+            vencedora = nome
+            break
 
-leonardo.forward(160)
+print(f"A tartaruga vencedora foi {vencedora}! ")
+
+#Definição da posição da tartaruga vencedora
+tartarugas[vencedora].setpos(0, 0)
+
+#Animação de comemoração da tartaruga vencedora
+while True:
+    tartarugas[vencedora].right(150)
 
 screen.exitonclick()
 
