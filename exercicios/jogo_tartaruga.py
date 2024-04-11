@@ -1,6 +1,5 @@
 from turtle import Turtle, Screen
 import random
-import turtle
 
 screen = Screen()
 
@@ -12,27 +11,26 @@ tartarugas = dict()
 vencedora = ""
 
 #Definição da posição de largada
-posicao_largada = (-170, 150)
+posicao_largada = [-170, 150]
 espacamento = 40
 
 #Loop para criar cada tartaruga
 for nome, cor in zip(nomes, cores):
-    tartarugas[nome] = turtle.Turtle()
+    tartarugas[nome] = Turtle()
     tartarugas[nome].shape("turtle")
     tartarugas[nome].color(cor)
+    tartarugas[nome].penup()
 
 #Movimento para a posição de largada
     pos_x = posicao_largada[0]
     pos_y = posicao_largada[1] - (espacamento * len(tartarugas)) 
     tartarugas[nome].setpos(pos_x, pos_y)
 
-random.randint(1, 6)
-
 while not vencedora:
     # Nomes é uma lista com todos os nomes das tartarugas
     for nome in nomes:
         # Obtendo a distância
-        distancia = random.randint(1, 6)
+        distancia = random.randint(1, 20)
         # Fazendo a tartaruga andar a distância
         tartarugas[nome].forward(distancia)
 
@@ -40,7 +38,7 @@ while not vencedora:
             vencedora = nome
             break
 
-print(f"A tartaruga vencedora foi {vencedora}! ")
+screen.textinput(f"Vencedor: {vencedora}! ", "")
 
 #Definição da posição da tartaruga vencedora
 tartarugas[vencedora].setpos(0, 0)
@@ -49,6 +47,6 @@ tartarugas[vencedora].setpos(0, 0)
 while True:
     tartarugas[vencedora].right(150)
 
-screen.exitonclick()
+    screen.exitonclick()
 
 
