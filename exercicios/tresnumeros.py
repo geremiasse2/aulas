@@ -1,23 +1,17 @@
 numeros = []
-numero1 = int(input("Digite um número: "))
-numeros.append(numero1)
+for numero in range(3):
+    numero = int(input(f'Digite o {numero + 1}º número: '))
+    numeros.append(numero)
 
-numero2 = int(input("Digite outro número: "))
-if numero2 > numero1:
-    numeros.append(numero2)
-else:
-    print("O número não pode ser menor que o anterior")    
+while numeros != sorted(numeros):
+    print('Os números não estão em ordem crescente, tente novamente. ')
+    numeros = []
+    for numero in range(3):
+        numero = int(input(f'Digite o {numero + 1}º número: '))
+        numeros.append(numero)
 
-numero3 = int(input("Digite outro número: "))
-if numero3 > numero2:
-    numeros.append(numero3)
-else:
-    print("O número não pode ser menor que o anterior")    
+quarto_numero = int(input('Digite o quarto número: '))
+numeros.append(quarto_numero)
+numeros.sort(reverse=True)
 
-numero4 = int(input("Digite outro número: "))
-numeros.append(numero4)
-
-numeros.sort()
-print(numeros)
-
-
+print('Números em ordem descrescente: ', numeros)
